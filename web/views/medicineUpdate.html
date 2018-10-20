@@ -1,0 +1,109 @@
+<div class="text-center nested-view">
+    <h1>{{title}}</h1>
+    <hr>
+
+    <h4>{{segment}}</h4>
+
+    <div class="well">
+        <a class="btn btn-primary" data-toggle="modal" data-target="#itemModal" ng-click="fetchMedicines();fetchActiveSubstances();fetchSideEffects()">Find a medicine</a>
+        <hr>
+        <form id="updateMedicineForm">
+            <div class="form-group form-control-lg">
+                <label>Medicine ID : </label>
+                <input id="key"
+                       type="text"
+                       class="form-control"
+                       pattern="(EMEA)([0-9]{6})"
+                       title="Please use only from : EMEA , followed by your 6 digits"
+                       required="required"
+                       ng-disabled="!medicine.id"
+                       ng-model="medicine.key">
+            </div>
+
+            <div class="form-group">
+                <label>Name : </label>
+                <input type="text"
+                       id="name"
+                       class="form-control"
+                       pattern="[A-Za-z][A-Za-z\s]+"
+                       title="Please use only letters and numbers"
+                       required="required"
+                       ng-disabled="!medicine.id"
+                       ng-model="medicine.name">
+            </div>
+            <div class="form-group">
+                <label>Description : </label>
+                <textarea class="form-control"
+                          id="description"
+                          type="text"
+                          rows="5"
+                          id="comment"
+                          required="required"
+                          ng-disabled="!medicine.id"
+                          ng-model="medicine.description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Price : </label>
+                <!--<input type="text" class="form-control" ng-model="item.price">-->
+                <input type="number"
+                       id="price"
+                       class="form-control"
+                       min="0.0"
+                       step="0.01"
+                       ng-model="medicine.price"
+                       required="required"
+                       ng-disabled="!medicine.id"
+                >
+            </div>
+            <div class="form-group">
+                <label>Producer : </label>
+                <input only-letters-input
+                       id="producer"
+                       type="text"
+                       pattern="[A-Za-z][A-Za-z\s]+"
+                       class="form-control"
+                       ng-model="medicine.producer"
+                       required="required"
+                       ng-disabled="!medicine.id"
+                >
+            </div>
+            <button
+                    class="btn btn-primary"
+                    type="submit"
+                    ng-disabled="!medicine.id">Update
+            </button>
+            <a class="btn btn-primary" ng-click="emptyFields()">Reset</a>
+        </form>
+        <div id="success-msg" class="well text-success" ng-if="successMsg && successMsg.length!=0">{{successMsg}}</div>
+        <div id="error-msg" class="well text-danger" ng-if="errorMsg && errorMsg.length!=0">{{errorMsg}}</div>
+    </div>
+    <div class="modal fade" id="itemModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>Medicine List</strong></h4>
+                </div>
+                <div class="modal-body text-justify" dir-paginate="med in medicines|itemsPerPage:5">
+                    <p><strong>Medicine ID</strong> : <a class="clickable" ng-click="setMedicine(med.id)" data-dismiss="modal">{{med.key}}</a></p>
+                    <p><strong>Name</strong> : {{med.name}}</p>
+                </div>
+                <div class="modal-footer">
+                    <dir-pagination-controls
+                            max-size="10"
+                            direction-links="true"
+                            boundary-links="true" >
+                    </dir-pagination-controls>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

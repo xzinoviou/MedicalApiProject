@@ -1,0 +1,46 @@
+body{
+
+
+    background-color : #b5cadb;
+
+
+}
+
+/*
+
+p,h1,h2,h3,h4,h5,h6,li {
+    font-size: 12px;
+}
+*/
+
+
+.partial-view{
+    box-shadow: 5px 5px 5px #000;
+}
+
+
+.btn{
+    overflow-wrap: break-word;
+
+}
+/*testing purposes*/
+
+/*
+  p,h1,h2,h3,h4,h5,h6,a,li,button,input,.btn,.card {
+    font-size:10px;
+  }
+
+  body,.card,.card-header,.btn,.btn-primary,.btn-danger,.btn-info,.btn-warning{
+      background:none;
+  }
+
+*/
+
+.card-header{
+    overflow-wrap: break-word;
+}
+
+.data-error {
+    color:red;
+    background:black;
+}

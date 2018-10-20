@@ -1,0 +1,88 @@
+<div class="text-center nested-view">
+    <h1>{{title}}</h1>
+    <hr>
+
+    <h4>{{segment}}</h4>
+
+    <div class="well">
+
+        <form class="form-inline">
+            <div class="form-group">
+                <label>Enter your keyword</label>
+                <input type="text" ng-model="search" class="form-control" placeholder="Enter your keyword">
+            </div>
+        </form>
+        <hr>
+
+        <table class="table table-bordered table-striped" ng-if="!requestError">
+            <thead class="theaders">
+            <tr class="text-center">
+                <td ng-click="sort('id')"><p>Index
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </p>
+                </td>
+                <td ng-click="sort('sideEffect.name')">
+                    <p>Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='sideEffect.name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </p>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" dir-paginate="item in items|orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
+                <td>{{item.sideEffect.id}}</td>
+                <td ng-click="setItemModal(item.sideEffect.id)"><a class="clickable" data-toggle="modal" data-target="#itemModal">{{item.sideEffect.name}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <dir-pagination-controls
+                max-size="10"
+                direction-links="true"
+                boundary-links="true" >
+        </dir-pagination-controls>
+        <div class="well" ng-if="requestErr">{{requestError}}</div>
+
+    </div>
+    <div class="modal fade" id="itemModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>Side Effects Info</strong> : {{itemModal.sideEffect.name}}</h4>
+                </div>
+                <div class="modal-body text-justify">
+                    <p><strong>Index</strong> : {{itemModal.sideEffect.id}}</p>
+                    <p><strong>Description</strong> : <br><em>{{itemModal.sideEffect.name}}</em></p>
+                    <hr>
+                    <h4>Medicines causing : <strong>{{itemModal.sideEffect.name}}</strong></h4>
+                    <div class="panel-group" id="accordionSideEffect" >
+                        <div class="panel panel-default" ng-repeat="item in itemModal.medicines">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordionSideEffect" href="#sideCollapse{{$index}}"><strong>{{item.name}}</strong></a>
+                                </h4>
+                            </div>
+                            <div id="sideCollapse{{$index}}" class="panel-collapse collapse">
+                                <div class="panel-body text-justify">
+                                    <p><strong>Medicine ID</strong> : {{item.key}}</p>
+                                    <p><strong>Description</strong> : {{item.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" ng-repat="item in items">
+                    <a class="btn btn-default float-left" ng-click="getPrev()" ng-if="itemModal.sideEffect.id-1!=0">Prev</a>
+                    <a class="btn btn-default float-right" ng-click="getNext()" ng-if="itemModal.sideEffect.id!=items.length">Next</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
