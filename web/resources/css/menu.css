@@ -74,3 +74,13 @@ body{
 .panel:hover {
     box-shadow: 10px 10px 10px #1d2124;
 }
+
+
+.img-thumbnail{
+    height:100px;
+    width: auto;
+}
+
+.end-points{
+
+}

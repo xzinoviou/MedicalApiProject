@@ -3,8 +3,8 @@ app.controller('loginCtrl',['$scope','UserService','AuthService','$localStorage'
 
 
         $scope.title = "Medical Api - Login";
-        $scope.email = "";
-        $scope.password = "";
+        $scope.email = "xenofon@email.com";
+        $scope.password = "Xenofon1!";
         $scope.token="";
         $scope.loginStatus="";
 

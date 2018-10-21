@@ -543,18 +543,55 @@ app
         $scope.segment = "Rest Api Exposed Endpoints & Request Payloads";
         var path = '../resources/img/';
 
+        $scope.itemModal = {
+            id:'',
+            url:'',
+            img:''
+        };
+
         $scope.rest = {
             Get:[
-                {url:'/api/medicines/all',img:path+'medicines_list.jpg'},
-                {url:'/api/medicines/side-effects/types',img:path+'side_effects.jpg'},
-                {url:'/api/medicines/side-effects/list',img:path + 'side_effects_medicines.jpg'},
-                {url:'/api/medicines/active-substances/list',img:path + 'active_substances.jpg'}
+                {id:1,url:'/api/medicines/id',img:path+'get_medicines_id.jpg'},
+                {id:2,url:'/api/medicines/key',img:path+'get_medicines_key.jpg'},
+                {id:3,url:'/api/medicines/list',img:path+'get_medicines_list.jpg'},
+                {id:4,url:'/api/medicines/side-effects/types',img:path+'get_side_effects_types.jpg'},
+                {id:5,url:'/api/medicines/side-effects/list',img:path + 'get_side_effects_info_list.jpg'},
+                {id:6,url:'/api/medicines/side-effects/id',img:path + 'get_side_effects_info_id.jpg'},
+                {id:7,url:'/api/medicines/active-substances/list',img:path + 'get_active_substances_list.jpg'},
+                {id:8,url:'/api/medicines/active-substances/id',img:path + 'get_active_substances_id.jpg'},
+                {id:9,url:'/api/medicines/active-substances/key',img:path + 'get_active_substances_key.jpg'},
+                {id:10,url:'/api/user/role',img:path + 'get_user_role.jpg'},
+                {id:11,url:'/api/user/role-types',img:path + 'get_user_role_types.jpg'},
+                {id:12,url:'invalid information - resource',img:path + 'resource_invalid.jpg'},
+                {id:13,url:'authentication error - resource',img:path + 'authentication_error.jpg'}
             ],
 
             Put:[{url:'/api/medicines/update',img:path + 'put.jpg'}],
 
             Post:[{url:'/api/medicines/create',img:path + 'post.jpg'}],
             Rest:[{url:'/api',img:path+'rest_endpoints.jpg'}]
+        };
+
+        $scope.sort = function(sortValue){
+            $scope.sortKey = sortValue;
+            $scope.reverse = !$scope.reverse;
+        };
+
+
+        $scope.setItemModal = function(id){
+            $scope.itemModal = _.find($scope.rest.Get, {id:id});
+        };
+
+        $scope.getPrev = function(){
+            var currentId = $scope.itemModal.id-1;
+
+            $scope.itemModal = _.find($scope.rest.Get,{id:currentId});
+        };
+
+        $scope.getNext = function(){
+            var currentId = $scope.itemModal.id+1;
+
+            $scope.itemModal = _.find($scope.rest.Get,{id:currentId});
         };
 
 

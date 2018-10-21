@@ -4,6 +4,67 @@
 
     <p>Http Request Method : GET</p>
     <hr>
+
+
+        <table class="table table-bordered table-striped" ng-if="!requestError">
+            <thead class="theaders">
+            <tr class="text-center">
+                <td ng-click="sort('url')"><p>End Point
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='url'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </p>
+                </td>
+                <td ng-click="sort('img')">
+                    <p>Resource - Json Format
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='img'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </p>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" dir-paginate="item in rest.Get|orderBy:sortKey:reverse|filter:search|itemsPerPage:3">
+                <td ng-click="setItemModal(item.id)"><a class="clickable" data-toggle="modal" data-target="#itemModal">{{item.url}}</a></td>
+                <td ng-click="setItemModal(item.id)"><a class="clickable" data-toggle="modal" data-target="#itemModal"><img class="img-thumbnail" src="{{item.img}}"></a></td>
+            </tr>
+            </tbody>
+        </table>
+        <dir-pagination-controls
+                max-size="10"
+                direction-links="true"
+                boundary-links="true" >
+        </dir-pagination-controls>
+
+    <div class="modal fade" id="itemModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>Medicine Info</strong> : {{itemModal.name}}</h4>
+                </div>
+                <div class="modal-body text-justify">
+                    <p><strong>Index</strong> : {{itemModal.id}}</p>
+                    <p><strong>End Point</strong> : {{itemModal.url}}</p>
+                    <div class="thumbnail">
+                        <img class="end-points img-responsive" src="{{itemModal.img}}">
+                        <div class="caption">
+                            <p>{{item.url}}</p>
+                        </div>
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default float-left" ng-click="getPrev()" ng-if="itemModal.id-1!=0">Prev</a>
+                    <a class="btn btn-default float-right" ng-click="getNext()" ng-if="itemModal.id!=rest.Get.length">Next</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--
     <div class="row">
         <div class="col-lg-3 ">
             <a href="{{rest.Get[$index+0].img}}" class="thumbnail">
@@ -27,4 +88,5 @@
         </div>
 
     </div>
+    -->
 </div>
