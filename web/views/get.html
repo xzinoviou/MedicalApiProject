@@ -23,7 +23,7 @@
             <tbody>
             <tr class="text-center" dir-paginate="item in rest.Get|orderBy:sortKey:reverse|filter:search|itemsPerPage:3">
                 <td ng-click="setItemModal(item.id)"><a class="clickable" data-toggle="modal" data-target="#itemModal">{{item.url}}</a></td>
-                <td ng-click="setItemModal(item.id)"><a class="clickable" data-toggle="modal" data-target="#itemModal"><img class="img-thumbnail" src="{{item.img}}"></a></td>
+                <td ng-click="setItemModal(item.id)"><a class="clickable" data-toggle="modal" data-target="#itemModal"><img class="img-thumbnail" ng-src="{{item.img}}"></a></td>
             </tr>
             </tbody>
         </table>
@@ -40,16 +40,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><strong>XmlHttpRequest Method : GET</strong> : {{itemModal.name}}</h4>
+                    <h4 class="modal-title"><strong>XmlHttpRequest Method : GET</strong></h4>
                 </div>
                 <div class="modal-body text-justify">
                     <p><strong>Index</strong> : {{itemModal.id}}</p>
-                    <p><strong>End Point</strong> : {{itemModal.url}}</p>
+                    <p><strong>End Point</strong> : <span style="font-size:1.5em;"><code>{{itemModal.url}}</code></span></p>
                     <div class="thumbnail">
-                        <img class="end-points img-responsive" src="{{itemModal.img}}">
-                        <div class="caption">
-                            <p>{{item.url}}</p>
-                        </div>
+                        <img class="end-points img-responsive" ng-src="{{itemModal.img}}">
                 </div>
 
                 </div>

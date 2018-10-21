@@ -33,8 +33,6 @@ public class LogoutServlet extends HttpServlet {
          */
         HttpSession session = request.getSession(false);
 
-        System.out.println("UUID = " + session.getAttribute("uuid"));
-
         if(session != null){
 
             session.removeAttribute("uuid");

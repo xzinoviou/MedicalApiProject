@@ -7,7 +7,7 @@ app.config(['$locationProvider',function($locationProvider){
 
 .config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
 
-    //$urlRouterProvider.otherwise('dashboard');
+    $urlRouterProvider.otherwise('');
 
     $stateProvider
         .state('about',{

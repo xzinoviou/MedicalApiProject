@@ -35,13 +35,6 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession httpSession = requestUser.getSession(false);
 
-        /*
-        if(httpSession == null && !(uri.endsWith(".jsp") || uri.endsWith("LoginServlet"))){
-            this.servletContext.log("Unauthorized Access request");
-            responseUser.sendRedirect("login.jsp");
-        }
-        */
-
         List<UriEnum> uris = new ArrayList<>();
 
         for(UriEnum u : UriEnum.values())

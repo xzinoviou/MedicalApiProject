@@ -203,12 +203,12 @@
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/lib/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/lib/lodash.3.10.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/lib/bootstrap.3.3.7.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/lib/angular.1.7.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/lib/angular-ui-router.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/lib/angular-resource.1.7.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/lib/ngStorage.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/lib/lodash.3.10.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/directives.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/services.js"></script>
