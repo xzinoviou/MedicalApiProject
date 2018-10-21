@@ -581,22 +581,18 @@ app
 
         $scope.setItemModal = function(id){
             $scope.itemModal = _.find($scope.rest.Get, {id:id});
-            console.log($scope.itemModal);
         };
 
         $scope.setPutItemModal = function(id){
             $scope.itemModal = _.find($scope.rest.Put, {id:id});
-            console.log($scope.itemModal);
         };
 
         $scope.setPostItemModal = function(id){
             $scope.itemModal = _.find($scope.rest.Post, {id:id});
-            console.log($scope.itemModal);
         };
 
         $scope.setRestItemModal = function(id){
             $scope.itemModal = _.find($scope.rest.Rest, {id:id});
-            console.log($scope.itemModal);
         };
 
         $scope.getPrev = function(){

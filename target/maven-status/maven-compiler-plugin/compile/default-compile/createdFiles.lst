@@ -25,7 +25,6 @@ controller/LogoutServlet.class
 dao/MedicineDao.class
 service/ActiveSubstanceService.class
 service/MedicineService.class
-testing/Tester.class
 controller/SignupServlet.class
 service/UserService.class
 model/User.class
