@@ -566,10 +566,11 @@ app
                 {id:13,url:'authentication error - resource',img:path + 'authentication_error.jpg'}
             ],
 
-            Put:[{url:'/api/medicines/update',img:path + 'put.jpg'}],
+            Put:[{id:1,url:'/api/medicines/update',img:path + 'put.jpg'}],
 
-            Post:[{url:'/api/medicines/create',img:path + 'post.jpg'}],
-            Rest:[{url:'/api',img:path+'rest_endpoints.jpg'}]
+            Post:[{id:1,url:'/api/medicines/create',img:path + 'post.jpg'}],
+
+            Rest:[{id:1,url:'/api',img:path+'rest_endpoints.jpg'}]
         };
 
         $scope.sort = function(sortValue){
@@ -580,6 +581,22 @@ app
 
         $scope.setItemModal = function(id){
             $scope.itemModal = _.find($scope.rest.Get, {id:id});
+            console.log($scope.itemModal);
+        };
+
+        $scope.setPutItemModal = function(id){
+            $scope.itemModal = _.find($scope.rest.Put, {id:id});
+            console.log($scope.itemModal);
+        };
+
+        $scope.setPostItemModal = function(id){
+            $scope.itemModal = _.find($scope.rest.Post, {id:id});
+            console.log($scope.itemModal);
+        };
+
+        $scope.setRestItemModal = function(id){
+            $scope.itemModal = _.find($scope.rest.Rest, {id:id});
+            console.log($scope.itemModal);
         };
 
         $scope.getPrev = function(){
