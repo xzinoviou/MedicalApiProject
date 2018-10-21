@@ -115,6 +115,8 @@ fabric.properties
 
 #IntelliJ web-inf
 .web/*.iml
+*.iml
+**/*.iml
 
 
 # OS generated files #
