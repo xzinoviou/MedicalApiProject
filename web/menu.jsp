@@ -26,13 +26,10 @@
      */
 
 
-
-
-    if(session.getAttribute("userInfo")==null){
-        response.sendRedirect("login.jsp");
+    if(session.getAttribute("userInfo") == null){
+        response.sendRedirect("/login.jsp");
     }
 
-    //User user = (User) session.getAttribute("user");
     UserInfo userInfo = (UserInfo)  session.getAttribute("userInfo");
     response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 

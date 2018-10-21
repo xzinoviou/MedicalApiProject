@@ -1,8 +1,8 @@
 'use strict';
 
 app
-    .controller('dashboardCtrl',['$scope','UserService','$localStorage','AuthService','$sessionStorage','$http',
-        function($scope,UserService,$localStorage,AuthService,$sessionStorage,$http){
+    .controller('dashboardCtrl',['$scope','UserService','$localStorage','$sessionStorage','$http',
+        function($scope,UserService,$localStorage,$sessionStorage,$http){
 
 
         var headers = {'Authorization':$localStorage.User.token};
@@ -45,9 +45,8 @@ app
     }])
 
     .controller('medAllCtrl',
-        ['$scope','$resource','medicineService','UserService',
-        'AuthService','$localStorage','$sessionStorage','$http',
-        function($scope,$resource,medicineService,UserService,AuthService,$localStorage,$sessionStorage,$http){
+        ['$scope','$resource','UserService','$localStorage','$sessionStorage','$http',
+        function($scope,$resource,UserService,$localStorage,$sessionStorage,$http){
 
         $scope.title = "Medicines Section";
         $scope.segment = "View all medicines in the database";
@@ -101,9 +100,8 @@ app
 
 
     .controller('activeSubstanceCtrl',
-        ['$scope','$resource','medicineService','UserService',
-            'AuthService','$localStorage','$sessionStorage','$http',
-            function($scope,$resource,medicineService,UserService,AuthService,$localStorage,$sessionStorage,$http){
+        ['$scope','$resource','UserService','$localStorage','$sessionStorage','$http',
+            function($scope,$resource,UserService,$localStorage,$sessionStorage,$http){
 
                 $scope.title = "Active Substances Section";
                 $scope.segment = "View all active substances in the database";
@@ -153,9 +151,8 @@ app
             }])
 
     .controller('sideEffectCtrl',
-        ['$scope','$resource','medicineService','UserService',
-            'AuthService','$localStorage','$sessionStorage','$http',
-            function($scope,$resource,medicineService,UserService,AuthService,$localStorage,$sessionStorage,$http){
+        ['$scope','$resource','UserService','$localStorage','$sessionStorage','$http',
+            function($scope,$resource,UserService,$localStorage,$sessionStorage,$http){
 
                 $scope.title = "Side Effects Section";
                 $scope.segment = "View all side effects that are recorded in database";
@@ -227,9 +224,8 @@ app
 
     }])
     .controller('medCreateCtrl',
-        ['$scope','$resource','medicineService','UserService',
-            'AuthService','$localStorage','$sessionStorage','$http',
-            function($scope,$resource,medicineService,UserService,AuthService,$localStorage,$sessionStorage,$http){
+        ['$scope','$resource','UserService','$localStorage','$sessionStorage','$http',
+            function($scope,$resource,UserService,$localStorage,$sessionStorage,$http){
 
                 $scope.title = "Doctors Section - Create a new Medicine";
                 $scope.segment = "Create new medicines to database";
@@ -320,7 +316,8 @@ app
 
                     var Medicine = {
                         /**
-                         * Set long ID to address serialization issues
+                         * Set a long ID to address serialization issues
+                         * Back-End will re-set it (auto-incremented in model)
                          */
                         id:99999999999999999,
                         key:'',
@@ -391,9 +388,9 @@ app
             }])
 
     .controller('medUpdateCtrl',
-        ['$scope','$resource','medicineService','UserService',
-            'AuthService','$localStorage','$sessionStorage','$http',
-            function($scope,$resource,medicineService,UserService,AuthService,$localStorage,$sessionStorage,$http){
+        ['$scope','$resource','UserService',
+            '$localStorage','$sessionStorage','$http',
+            function($scope,$resource,UserService,$localStorage,$sessionStorage,$http){
 
                 var updateMedicineForm = document.getElementById('updateMedicineForm').onsubmit = function(){
                     $scope.updateMedicine();
@@ -506,7 +503,6 @@ app
                     Medicine.price = $scope.medicine.price;
                     Medicine.isValid = $scope.medicine.valid;
                     Medicine.producer = $scope.medicine.producer;
-                    //var json = angular.toJson(Medicine);
                     var json = angular.toJson($scope.medicine);
 
                     $http.put("/api/medicines/id/"+$scope.medicine.id,json,{headers:headers})
@@ -536,16 +532,12 @@ app
                 };
             }])
 
-    .controller('aboutCtrl',['$scope','UserService','$localStorage','AuthService','$sessionStorage','$http',
-        function($scope,UserService,$localStorage,AuthService,$sessionStorage,$http){
+    .controller('aboutCtrl',['$scope',function($scope){
             $scope.title = "About this Project";
             $scope.segment = "Course : Medical Informatics";
         }])
 
-    .controller('apiDocCtrl',
-        ['$scope','$resource','medicineService','UserService',
-            'AuthService','$localStorage','$sessionStorage','$http',
-            function($scope,$resource,medicineService,UserService,AuthService,$localStorage,$sessionStorage,$http){
+    .controller('apiDocCtrl',['$scope',function($scope){
 
         $scope.title = "Medical Api - Rest";
         $scope.segment = "Rest Api Exposed Endpoints & Request Payloads";

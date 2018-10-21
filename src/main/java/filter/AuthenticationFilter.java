@@ -49,7 +49,6 @@ public class AuthenticationFilter implements Filter {
 
         if(httpSession == null && (!uri.endsWith("/login.jsp") || (uri.startsWith("LoginServlet")) )){
             this.servletContext.log("Unauthorized Access request");
-
             responseUser.sendRedirect("/login.jsp");
         }
 

@@ -1,19 +1,6 @@
 'use strict';
 
-app.factory('medicineService',['$resource',function($resource){
-    return $resource('/api/medicines/all');
-}])
-
-.factory('medicineParamService',['$resource',function($resource){
-    return $resource('/api/medicines/:param');
-}])
-
-.factory('currentUserService',['$resource',function($resource){
-    return $resource('/api/users/:id');
-}])
-
-
-.factory('UserService',['$http',function($http){
+app.factory('UserService',['$http',function($http){
     var userService = {
 
         User: {
