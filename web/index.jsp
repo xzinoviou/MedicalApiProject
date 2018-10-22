@@ -9,7 +9,7 @@
 <html>
   <head>
     <title>$Title$</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/unipi.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/medical-symbol-icon.png" type="image/x-icon" />
   </head>
   <body>
   <p>Server is up ..</p>

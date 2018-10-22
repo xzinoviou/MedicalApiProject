@@ -35,8 +35,6 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("passwordID",passwordInput);
 
 
-
-
         userDao = new UserDao();
 
         User user = null;

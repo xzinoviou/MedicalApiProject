@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.3.3.7.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fonts/font-awesome.min.css">
-    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/unipi.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/medical-symbol-icon.png" type="image/x-icon" />
 </head>
 <body ng-app="app">
 
