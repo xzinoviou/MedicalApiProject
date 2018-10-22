@@ -39,59 +39,78 @@ public class LoginServlet extends HttpServlet {
 
         userDao = new UserDao();
 
-        User user = (User) userDao.getEntityByParams(emailInput,passwordInput);
+        User user = null;
 
-        if(user != null){
+        try{
+            user = (User) userDao.getEntityByParams(emailInput,passwordInput);
 
-            /**
-             * create the session
-             */
+            if(user != null){
 
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUser(user);
-            userInfo.setRole(RoleTypeEnum.valueOf((String) userDao.getUserRole(user)));
-            HttpSession session = request.getSession();
+                /**
+                 * create the session
+                 */
 
-            String loginStatus = "Success!";
-            request.setAttribute("loginStatus",loginStatus);
+                UserInfo userInfo = new UserInfo();
+                userInfo.setUser(user);
+                userInfo.setRole(RoleTypeEnum.valueOf((String) userDao.getUserRole(user)));
+                HttpSession session = request.getSession();
+
+                String loginStatus = "Success!";
+                request.setAttribute("loginStatus",loginStatus);
 
 
 
-            /**
-             * set user of session
-             */
-            session.setAttribute("userInfo",userInfo);
+                /**
+                 * set user of session
+                 */
+                session.setAttribute("userInfo",userInfo);
 
-            /**
-             * session interval const * secs
-             */
-            session.setMaxInactiveInterval(20*60);
+                /**
+                 * session interval const * secs
+                 */
+                session.setMaxInactiveInterval(20*60);
 
-            /**
-             * create the cookie
-             */
+                /**
+                 * create the cookie
+                 */
 
-            String uuid = UUID.randomUUID().toString();
-            Cookie userCookie = new Cookie("uuid",uuid);
-            userCookie.setMaxAge(20*60);
+                String uuid = UUID.randomUUID().toString();
+                Cookie userCookie = new Cookie("uuid",uuid);
+                userCookie.setMaxAge(20*60);
 
-            response.addCookie(userCookie);
-            response.sendRedirect("/menu.jsp");
+                response.addCookie(userCookie);
+                response.sendRedirect("/menu.jsp");
 
-        }
+            }
 
-        else{
+            else{
 
+                RequestDispatcher requestDispatcher = getServletContext()
+                        .getRequestDispatcher("/login.jsp");
+
+                String loginStatus = "Wrong credentials";
+
+                request.setAttribute("loginStatus",loginStatus);
+
+                requestDispatcher.include(request,response);
+
+            }
+
+
+        } catch(Exception e){
             RequestDispatcher requestDispatcher = getServletContext()
                     .getRequestDispatcher("/login.jsp");
 
-            String loginStatus = "Wrong credentials";
+            String loginStatus = "Connection to Database is not available at the moment. Please contact your local admin";
 
             request.setAttribute("loginStatus",loginStatus);
 
             requestDispatcher.include(request,response);
-
         }
+
+
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
