@@ -99,6 +99,7 @@ public class MedicineServiceImpl implements MedicineService{
     @Override
     public void delete(Long id) {
 
+        medicineDao.deleteEntityById(id);
     }
 
 

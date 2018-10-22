@@ -1,3 +1,5 @@
+'use strict';
+
 app.controller('signupCtrl',['$scope','UserService','AuthService','$localStorage','$sessionStorage','$http',
     function($scope,UserService,AuthService,$localStorage,$sessionStorage,$http){
 

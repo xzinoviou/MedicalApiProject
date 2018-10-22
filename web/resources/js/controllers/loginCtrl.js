@@ -1,3 +1,5 @@
+'use strict';
+
 app.controller('loginCtrl',['$scope','UserService','AuthService','$localStorage','$sessionStorage',
     function($scope,UserService,AuthService,$localStorage,$sessionStorage){
 
